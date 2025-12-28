@@ -130,7 +130,7 @@ body.window-open {
 /* --- HEADER --- */
 header {
   text-align: center;
-  margin-bottom: 75px; /* UPDATED to 75px */
+  margin-bottom: 75px; 
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
@@ -239,9 +239,11 @@ header p {
   background: transparent;
   border: none;
   text-align: left;
-  perspective: 1200px; /* Increased for deeper parallax */
+  perspective: 1200px;
   border-radius: 10px;
   -webkit-tap-highlight-color: transparent;
+  /* Performance Optimization */
+  contain: layout paint;
 }
 
 .album:focus-visible .album-inner {
@@ -260,12 +262,11 @@ header p {
   text-align: center;
   overflow: hidden; 
   position: relative;
-  /* UPDATED TRANSITIONS FOR PARALLAX */
   transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, filter 0.25s ease;
   box-shadow: 
     0 15px 35px rgba(0,0,0,0.6), 
     0 0 80px -10px rgba(160, 40, 60, 0.22);
-  transform-style: preserve-3d; /* Key for depth */
+  transform-style: preserve-3d; 
   will-change: transform;
 }
 
@@ -291,7 +292,7 @@ header p {
   pointer-events: none;
   z-index: 50;
   transition: opacity 0.2s ease;
-  transform: translateZ(1px); /* Sit on top */
+  transform: translateZ(1px); 
 }
 
 @media (hover: hover) {
@@ -313,13 +314,13 @@ header p {
 
 .album img {
   width: 100%;
+  height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: var(--radius);
   margin-bottom: 14px;
   user-select: none;
   pointer-events: none;
-  /* Prepare for 3D */
   box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
 }
 
@@ -510,6 +511,9 @@ header p {
   transform: translateY(30px);
   animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   animation-delay: 1.0s;
+  /* PERFORMANCE: Skip rendering when off-screen */
+  content-visibility: auto; 
+  contain-intrinsic-size: 500px;
 }
 .honorable h2 { font-size: .7rem; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
 
@@ -538,10 +542,10 @@ header p {
 
 /* FIX FOR HONORABLE TITLES */
 .honorable .album h2 { 
-  font-size: 0.85rem;          
-  font-weight: 600;            
-  letter-spacing: -0.01em;     
-  line-height: 1.35;           
+  font-size: 0.85rem;           
+  font-weight: 600;             
+  letter-spacing: -0.01em;      
+  line-height: 1.35;            
   margin-bottom: 4px;
   color: #eaeaea;
   display: -webkit-box;
@@ -549,7 +553,7 @@ header p {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 2.7em;               
+  height: 2.7em;                
   text-transform: none;
 }
 
@@ -963,7 +967,8 @@ const createAlbumCard = (album, isHonorable = false) => {
 
   article.innerHTML = `
     <div class="album-inner">
-      <div class="glare"></div> <img src="${album.cover}" alt="${album.title}" loading="${loadingType}" decoding="async" draggable="false">
+      <div class="glare"></div> 
+      <img src="${album.cover}" alt="${album.title}" width="300" height="300" loading="${loadingType}" decoding="async" draggable="false">
       <h2>${displayTitle}</h2>
       <div class="artist">${album.artist}</div>
       <div class="review">${album.shortReview}</div>
@@ -1168,79 +1173,115 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.row, .honorable .album').forEach(el => observer.observe(el));
 
-// --- 3D TILT ENGINE with GLARE & PARALLAX ---
+// --- OPTIMIZED 3D TILT ENGINE ---
 const isDesktop = window.matchMedia("(min-width: 769px) and (hover: hover)").matches;
 
 if (isDesktop) {
     const cursor = document.getElementById('cursor-glow');
     let mouseX = 0, mouseY = 0;
     let currentX = 0, currentY = 0;
+    let isCursorTicking = false;
 
+    // --- 1. Global Mouse Tracker (Lightweight) ---
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        
+        if (!isCursorTicking) {
+            window.requestAnimationFrame(animateCursor);
+            isCursorTicking = true;
+        }
     });
 
+    // --- 2. Cursor Animation Loop ---
     const animateCursor = () => {
+        // Linear interpolation for smooth trailing
         currentX += (mouseX - currentX) * 0.15; 
         currentY += (mouseY - currentY) * 0.15;
-        cursor.style.transform = `translate(${currentX}px, ${currentY}px)`;
-        requestAnimationFrame(animateCursor);
-    };
-    animateCursor();
+        
+        if (cursor) {
+           cursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+        }
 
-    document.querySelectorAll('.album').forEach(card => {
+        // If movement is very small, stop the loop to save battery
+        if (Math.abs(mouseX - currentX) > 0.1 || Math.abs(mouseY - currentY) > 0.1) {
+             window.requestAnimationFrame(animateCursor);
+        } else {
+             isCursorTicking = false;
+        }
+    };
+
+    // --- 3. Card Tilt Logic (Optimized) ---
+    const cards = document.querySelectorAll('.album');
+    
+    cards.forEach(card => {
         let bounds;
         const inner = card.querySelector('.album-inner');
         const glare = card.querySelector('.glare');
         const img = card.querySelector('img');
         const textElements = card.querySelectorAll('h2, .artist, .review');
+        let cardTicking = false;
+        let cardMouseX = 0;
+        let cardMouseY = 0;
         
+        const updateTilt = () => {
+            if (!bounds) {
+                cardTicking = false;
+                return;
+            }
+
+            const x = cardMouseX - bounds.left;
+            const y = cardMouseY - bounds.top;
+            
+            // Calculate rotation
+            const xRotation = -((y - bounds.height / 2) / 10); 
+            const yRotation = ((x - bounds.width / 2) / 10);
+            
+            // Apply Transforms
+            inner.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) translateY(-5px)`;
+            
+            // Glare
+            if(glare) {
+                const glareX = (x / bounds.width) * 100;
+                const glareY = (y / bounds.height) * 100;
+                glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.25), transparent 50%)`;
+            }
+
+            // Parallax
+            if(img) img.style.transform = `translateZ(30px) scale(1.02)`;
+            textElements.forEach(el => el.style.transform = `translateZ(20px)`);
+
+            cardTicking = false;
+        };
+
         card.addEventListener('mouseenter', () => {
             bounds = card.getBoundingClientRect();
             inner.style.willChange = 'transform';
         });
 
         card.addEventListener('mousemove', (e) => {
-            if (!bounds) return;
-            const x = e.clientX - bounds.left;
-            const y = e.clientY - bounds.top;
+            cardMouseX = e.clientX;
+            cardMouseY = e.clientY;
             
-            // Calculate rotation
-            const xRotation = -((y - bounds.height / 2) / 10); 
-            const yRotation = ((x - bounds.width / 2) / 10);
-            
-            // Calculate Glare Position
-            const glareX = (x / bounds.width) * 100;
-            const glareY = (y / bounds.height) * 100;
-
-            requestAnimationFrame(() => {
-                // Apply Tilt to Card
-                inner.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) translateY(-5px)`;
-                
-                // Update Glare Gradient
-                if(glare) {
-                    glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.25), transparent 50%)`;
-                }
-
-                // Apply Parallax Depth
-                if(img) img.style.transform = `translateZ(30px) scale(1.02)`;
-                textElements.forEach(el => el.style.transform = `translateZ(20px)`);
-            });
+            if (!cardTicking) {
+                window.requestAnimationFrame(updateTilt);
+                cardTicking = true;
+            }
         });
 
         card.addEventListener('mouseleave', () => {
+            // Reset styles immediately
             inner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             inner.style.willChange = 'auto';
-            
-            // Reset Parallax
             if(img) img.style.transform = 'translateZ(0) scale(1)';
             textElements.forEach(el => el.style.transform = 'translateZ(0)');
-            
             bounds = null; 
+            cardTicking = false;
         });
     });
+
 } else {
+    // Disable heavy effects on mobile
     const cursor = document.getElementById('cursor-glow');
     if(cursor) cursor.style.display = 'none';
 }
