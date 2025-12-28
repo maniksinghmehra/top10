@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0b0d10">
 <title>Top Albums — 2025</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+New&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Courier+New&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -18,6 +18,7 @@
   --card-border: rgba(255,255,255,0.08);
   --radius: 14px;
   --font: 'Inter', sans-serif;
+  --serif: 'Lora', serif; 
   --card-width: 260px;
 }
 
@@ -242,7 +243,6 @@ header p {
   perspective: 1200px;
   border-radius: 10px;
   -webkit-tap-highlight-color: transparent;
-  /* FIX: REMOVED "contain" to fix 3D clipping/square glitch */
 }
 
 .album:focus-visible .album-inner {
@@ -311,7 +311,6 @@ header p {
   }
 }
 
-/* REPLACED IMG WITH BACKGROUND DIV TO FIX GLITCHES & EXTENSIONS */
 .album-art {
   width: 100%;
   aspect-ratio: 1/1;
@@ -451,15 +450,26 @@ header p {
   opacity: 0.6;
 }
 .review-window.is-centered .rw-text {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   line-height: 1.8;
   color: rgba(234,234,234,0.85);
 }
 
-/* FORM STYLES */
+/* UPDATED FORM STYLES */
 .review-window h3 { font-size: 1.6rem; color: var(--text); line-height: 1.1; margin-bottom: 6px; }
 .review-window .rw-artist { color: var(--muted); margin-bottom: 24px; font-size: 1.1rem; font-style: italic;}
-.review-window .rw-text { line-height: 1.7; color: var(--text); font-size: 1rem; opacity: 0.9; }
+
+/* REVIEW TEXT STYLING - REMOVED BIG LETTER */
+.review-window .rw-text {
+  font-family: var(--serif); 
+  font-size: 1.15rem; 
+  line-height: 1.8;   
+  color: #e6e6e6;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5); 
+  max-width: 65ch; 
+  margin-top: 0;
+  opacity: 0.95;
+}
 
 .meta-row {
   display: flex;
@@ -512,7 +522,6 @@ header p {
   transform: translateY(30px);
   animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   animation-delay: 1.0s;
-  /* PERFORMANCE */
   content-visibility: auto; 
   contain-intrinsic-size: 500px;
 }
@@ -541,7 +550,6 @@ header p {
 .honorable .album-inner .album-art { margin-bottom: 8px; }
 .honorable .album .artist { margin-bottom: 6px; font-size: 0.75rem; }
 
-/* FIX FOR HONORABLE TITLES */
 .honorable .album h2 { 
   font-size: 0.85rem;           
   font-weight: 600;             
@@ -608,7 +616,6 @@ header p {
     transition: transform 0.1s ease !important; 
   }
 
-  /* Reduce blur load on mobile */
   .bg { filter: blur(30px); opacity: 0.6; }
   .bg::before, .bg::after { animation: none !important; }
 
@@ -625,7 +632,13 @@ header p {
   .rw-content { text-align: center; }
   .review-window h3 { font-size: 1.3rem; margin-bottom: 4px; }
   .review-window .rw-artist { font-size: 0.95rem; margin-bottom: 12px; }
-  .review-window .rw-text { font-size: 0.9rem; line-height: 1.5; }
+  
+  .review-window .rw-text { 
+    font-size: 1.05rem; 
+    line-height: 1.6; 
+    text-align: left; 
+  }
+  
   .meta-row { justify-content: center; margin-top: 20px; padding-top: 16px; gap: 20px; }
   .rw-actions { justify-content: center; margin-top: 20px; }
   .btn { padding: 10px 20px; font-size: 0.8rem; }
@@ -642,7 +655,6 @@ header p {
   }
 }
 
-/* UPDATED VISUAL SIZE FOR DESKTOP */
 .rw-visual img {
   width: 100%;
   aspect-ratio: 1/1;
@@ -653,18 +665,15 @@ header p {
 }
 
 @media (max-width: 768px) {
-
   .rw-grid {
     grid-template-columns: 1fr !important;
   }
-
   .rw-visual {
     width: 130px !important;
     max-width: 130px !important;
     min-width: 130px !important;
     margin: 0 auto 12px !important;
   }
-
   .rw-visual img {
     width: 130px !important;
     height: 130px !important;
@@ -674,9 +683,7 @@ header p {
     object-fit: cover !important;
     border-radius: 12px;
   }
-
 }
-
 </style>
 </head>
 
@@ -685,7 +692,6 @@ header p {
 <div class="bg"></div>
 <div class="noise"></div> 
 <div class="wrap">
-
 
   <header>
     <h1>Top 10 Albums 2025</h1>
@@ -746,9 +752,6 @@ header p {
         </div>
       </div>
     </div>
-
-  
-
   </div>
 </div>
 
@@ -759,23 +762,23 @@ const topAlbums = [
     title: "Ego Death at a Bachelorette Party",
     artist: "Hayley Williams",
     released: "28 Aug 2025",
-    runtime: "42m 15s",
+    runtime: "1hr 6m",
     cover: "https://i.scdn.co/image/ab67616d0000b273850c0e3fdd3b3b5cb0b7fa63",
     spotify: "https://open.spotify.com/album/3MROTtttK946gHaTkXeP8b?si=Umt10HlzRaicJEUXRUAprQ",
     apple: "https://music.apple.com/us/album/ego-death-at-a-bachelorette-party/1850011909",
-    review: "A jagged, uncomfortable, and brilliant deconstruction of social performance. It feels like a panic attack at a celebration. The production is minimal but sharp as a knife.",
+    review: "Her best solo work and probably her last solo work too. I’ve always loved hearing her, mostly through Paramore — I fucking love that band. This album is mostly nostalgia, and for me it’s the best album of 2025.",
     shortReview: "Social performance."
   },
   {
     rank: 2,
     title: "The Art of Loving",
     artist: "Olivia Dean",
-    released: "14 Feb 2025",
-    runtime: "38m 12s",
+    released: "26 Sep 2025",
+    runtime: "34m 23s",
     cover: "https://i.scdn.co/image/ab67616d0000b2739a336bfb6d40bbd90a507417",
     spotify: "https://open.spotify.com/album/0l8zYqoUeBYg47Gmevq9HZ?si=zDoVqfn7S7G1-5Lx7vCq9g",
     apple: "https://music.apple.com/us/album/the-art-of-loving/1817609404",
-    review: "Tender and intentional. It moves from radio-friendly joy to sweeping soul without ever losing its intimacy.",
+    review: "In this album she speaks about love in a new way, and it reminded me how we had a new definition of love every day. She was my favorite artist of the year, and I hope she comes back with more great music.",
     shortReview: "Tender soul."
   },
   {
@@ -787,7 +790,7 @@ const topAlbums = [
     cover: "https://i.scdn.co/image/ab67616d0000b273e04b8c0b83df4247f25ac979",
     spotify: "https://open.spotify.com/album/77CZUF57sYqgtznUe3OikQ?si=MTYdcdqSTvyPYcQjjRo2Zw",
     apple: "https://music.apple.com/us/album/i-love-my-computer/1824602984",
-    review: "A surprisingly moving tribute to 2010s internet culture. Glitchy, hyper-kinetic, yet deeply sentimental.",
+    review: "When I first read the title, I was like, damn girl, I love my computer too. The album has a new sound that I really love. One of the music videos had a top comment saying “how much RAM does she have?” — I hope a lot.",
     shortReview: "Digital sentiment."
   },
   {
@@ -795,35 +798,35 @@ const topAlbums = [
     title: "Getting Killed",
     artist: "Geese",
     released: "26 Sep 2025",
-    runtime: "45m 35s",
+    runtime: "45m 39s",
     cover: "https://i.scdn.co/image/ab67616d0000b27345e82ae0372a50834825c018",
     spotify: "https://open.spotify.com/album/0eeXb23yMW6EaIgm63xxPC?si=Gw_vC80uSEe8Ajaz6ELyMg",
     apple: "https://music.apple.com/us/album/getting-killed/1818548779",
-    review: "Art-rock perfection. Volatile, chaotic, and featuring the best rhythm section of the year.",
+    review: "This album made me crazy for feet. “Baby let me wash feet forever.” I like this album a lot; I always find something new in it. Geese is going in a good direction, and I don’t think they’re underrated anymore.",
     shortReview: "Chaotic art-rock."
   },
   {
     rank: 5,
     title: "Let God Sort 'Em Out",
     artist: "Clipse",
-    released: "04 Jul 2025",
-    runtime: "38m 10s",
+    released: "11 Jul 2025",
+    runtime: "40m 52s",
     cover: "https://i.scdn.co/image/ab67616d0000b273ef854fe1d04279372a96f3d6",
     spotify: "https://open.spotify.com/album/17ScNnJ0lSWajodZaRpHdQ?si=uYb9RPmdTjOCS6tSNmirFA",
     apple: "https://music.apple.com/us/album/let-god-sort-em-out/1862672249",
-    review: "Dense, cryptic luxury rap. The production is dusty and divine, sounding like it was recorded in a cathedral.",
+    review: "You know what I love about this album? Pharrell Williams. The fucking rap performances on this are crazy — every word had me like damn. This is that kind of luxury rap, and they made the hiatus worth the wait. Love the production.",
     shortReview: "Cryptic luxury."
   },
   {
     rank: 6,
     title: "Alfredo 2",
-    artist: "Freddie Gibbs",
-    released: "12 Nov 2025",
-    runtime: "34m 45s",
+    artist: "Freddie Gibbs & The Alchemist",
+    released: "25 Jul 2025",
+    runtime: "47m 48s",
     cover: "https://i.scdn.co/image/ab67616d0000b273e098f51a1a2ebb827dc6099a",
     spotify: "https://open.spotify.com/album/5WrpCQmbTUZuzNxGCPUFSV?si=gLNk9irYROWzpqrFjPi8_A",
     apple: "https://music.apple.com/us/album/alfredo-2/1824019687",
-    review: "The chemistry is still untouched. Smoother, darker, and more reflective than the original.",
+    review: "Firstly, the production was beautiful, as expected from The Alchemist. Then the features — and obviously Freddie Gibbs did an amazing job on this. The album art still confuses me. An amazing sequel to Alfredo.",
     shortReview: "Untouchable duo."
   },
   {
@@ -831,11 +834,11 @@ const topAlbums = [
     title: "Magic, Alive!",
     artist: "McKinley Dixon",
     released: "06 Jun 2025",
-    runtime: "41m 00s",
+    runtime: "35m 04s",
     cover: "https://i.scdn.co/image/ab67616d0000b273a35f4d1997eae45a4c229658",
     spotify: "https://open.spotify.com/album/0RXsRwX4iMCKkSFPoSs8Go?si=N_ww1w7MREKAuJvTtRvZSw",
     apple: "https://music.apple.com/us/album/magic-alive/1788296577",
-    review: "Jazz-rap that feels like a broadway tragedy. Lush orchestration meets biting reality.",
+    review: "This album has a different energy in a good way. I love the jazzy vibe and the rapping on this album — the sound is warm and mellow. The writing is actually very good, and it all comes together in a way that feels thoughtful and intentional.",
     shortReview: "Lush jazz-rap."
   },
   {
@@ -843,23 +846,23 @@ const topAlbums = [
     title: "Lonely People With Power",
     artist: "Deafheaven",
     released: "28 Mar 2025",
-    runtime: "48m 20s",
+    runtime: "1hr 02s",
     cover: "https://i.scdn.co/image/ab67616d0000b2732b6889e803c1e1334c0c2d75",
     spotify: "https://open.spotify.com/album/5Eh3xMVdGFAUiYwuoPOzXc?si=kDqbn4XMQiOnlY91-8lBUQ",
     apple: "https://music.apple.com/us/album/lonely-people-with-power/1792077173",
-    review: "A pivot back to crushing heaviness, but with the shoegaze melody of 'Infinite Granite' intact.",
+    review: "This feels like a lonely-at-the-top kind of album. Best metal album of the year for me. The sound is too lonely to be released in March — it’s like having ice cream in December. And through all of that, this shit goes hard as fuck.",
     shortReview: "Crushing melody."
   },
   {
     rank: 9,
     title: "The Passionate Ones",
     artist: "Nourished by Time",
-    released: "15 May 2025",
-    runtime: "32m 00s",
+    released: "22 Aug 2025",
+    runtime: "45m 21s",
     cover: "https://i.scdn.co/image/ab67616d0000b273a3aa51a22f09990bad35633c",
     spotify: "https://open.spotify.com/album/5Y3SsoA0yibZh5946vXgKS?si=wMSTjy1sQneICFea8rfLVg",
     apple: "https://music.apple.com/us/album/the-passionate-ones/1807286924",
-    review: "A hidden gem of 2025. Raw indie energy that feels like a lost tape from 2005.",
+    review: "It feels like caring deeply and not knowing what to do with it. This album sounds tired, warm, and honest, like emotions that never fully leave. It’s lonely, but in a gentle way that stays with you.",
     shortReview: "Raw indie."
   },
   {
@@ -867,11 +870,11 @@ const topAlbums = [
     title: "Forever Howlong",
     artist: "Black Country, New Road",
     released: "04 Apr 2025",
-    runtime: "52m 10s",
+    runtime: "52m 15s",
     cover: "https://i.scdn.co/image/ab67616d0000b273876f720551132b50c9232fad",
     spotify: "https://open.spotify.com/album/5FjaEW3Hi8vD2aoJNWln4t?si=ZtkIYFIxQqSKomW-AFPlsQ",
     apple: "https://music.apple.com/us/album/forever-howlong/1783713554",
-    review: "Baroque pop that feels fragile and massive at once. The woodwind arrangements are career-best.",
+    review: "The album feels like the sun shining in the perfect way. It’s sweet — like walking home when she first held your hand, when everything started as a friendship turning into lovers, and there was nothing to worry about.",
     shortReview: "Baroque masterpiece."
   }
 ];
@@ -881,10 +884,10 @@ const honorableMentions = [
     title: "Willoughby Tucker, I'll Always Love You",
     artist: "Ethel Cain",
     cover: "https://i.scdn.co/image/ab67616d0000b2737da9ae8f4a4d633772c9513b",
-    review: "A haunting Southern Gothic return.",
+    review: "She introduced me to Ethel Cain. I still don’t understand her much, but from whatever part of her lives in me, I liked this album.",
     shortReview: "Devotional grief",
     released: "08 Aug 2025",
-    runtime: "73m 35s",
+    runtime: "1hr 13m",
     spotify: "https://open.spotify.com/album/3iSPMfhw4P30tFrROrbkFm?si=lt9jP74lQiW-aiYthJPS5w",
     apple: "https://music.apple.com/in/album/willoughby-tucker-ill-always-love-you/1818431571"
   },
@@ -892,7 +895,7 @@ const honorableMentions = [
     title: "Revengeseekerz",
     artist: "Jane Remover",
     cover: "https://i.scdn.co/image/ab67616d0000b273ab0d83b752dcf9f2a7ddd51b",
-    review: "Shoegaze meets hyperpop chaos.",
+    review: "It feels loud, messy, and confusing in a way that works. I didn’t understand all of it, but it stayed with me.",
     shortReview: "Digital fury",
     released: "04 Apr 2025",
     runtime: "49m 26s",
@@ -903,10 +906,10 @@ const honorableMentions = [
     title: "Blurrr",
     artist: "Joanne Robertson",
     cover: "https://i.scdn.co/image/ab67616d0000b273724bbca364fdbc66c1addfc5",
-    review: "Acoustic haze and poetry.",
+    review: "I was scared listening to this album. I love Joanne Robertson mostly from Dean Blunt and her collaborations. Her voice feels ghostly, slowly fading, but comforting at the same time.",
     shortReview: "Dissolving memories",
     released: "19 Sep 2025",
-    runtime: "43m 30s",
+    runtime: "43m 34s",
     spotify: "https://open.spotify.com/album/5WhOeAAZdZNuVPd0owQ88D?si=tNS--QImR22zKQjrQcYGrQ",
     apple: "https://music.apple.com/in/album/blurrr/1806107071"
   },
@@ -914,7 +917,7 @@ const honorableMentions = [
     title: "viagr aboys",
     artist: "Viagra Boys",
     cover: "https://i.scdn.co/image/ab67616d0000b273bf26b3f697a7d4a039a6e3a9",
-    review: "Cinematic production on a massive scale.",
+    review: "This album feels unhinged and funny, with something darker hiding underneath. It sounds chaotic on the surface but knows exactly what it’s doing.",
     shortReview: "Grotesque satire",
     released: "25 Apr 2025",
     runtime: "37m 22s",
@@ -925,10 +928,10 @@ const honorableMentions = [
     title: "Total Freedom",
     artist: "Cowgirl Clue",
     cover: "https://i.scdn.co/image/ab67616d0000b27301637a663475859b821607e2",
-    review: "Fairy-core punk energy.",
+    review: "I really enjoyed this playlist while making this webpage and walking around the lake before college. Soft and new.",
     shortReview: "Unfiltered playfulness",
     released: "25 Sep 2025",
-    runtime: "33m 31s",
+    runtime: "33m 38s",
     spotify: "https://open.spotify.com/album/5bvu4s2hEDC33yV5C5N4LZ?si=7kvjZBgiQk6Ss6Rkwedt2g",
     apple: "https://music.apple.com/in/album/total-freedom/1840623210"
   }
@@ -961,7 +964,6 @@ const createAlbumCard = (album, isHonorable = false) => {
   // Hybrid Lazy Loading
   const loadingType = (album.rank && album.rank <= 3) ? 'eager' : 'lazy';
 
-  // UPDATED: Now shows full title without substring cut-off
   const displayTitle = isHonorable ? album.title : `${album.rank}. ${album.title}`;
 
   article.innerHTML = `
@@ -1019,10 +1021,8 @@ renderPyramid();
 renderHonorable();
 
 // --- TRIGGER INTRO ANIMATION ---
-// Wait for DOM content to be ready, then trigger the fade-in class
 window.addEventListener('DOMContentLoaded', () => {
   const rows = document.querySelectorAll('.row');
-  // Small timeout to ensure CSS transitions catch the state change
   setTimeout(() => {
     rows.forEach(row => {
       row.classList.add('intro-visible');
@@ -1052,12 +1052,13 @@ const openModal = (album) => {
   
   titleEl.textContent = album.dataset.title;
   artistEl.textContent = album.dataset.artist;
-  textEl.textContent = album.dataset.review;
+  
+  // Use innerHTML to allow formatting in reviews
+  textEl.innerHTML = album.dataset.review;
   
   // Extract background image URL for modal
   const cardArtDiv = album.querySelector('.album-art');
   const bgImageStyle = cardArtDiv.style.backgroundImage;
-  // Strip url("...") wrapper
   const bgUrl = bgImageStyle.slice(5, -2); 
   
   rwImg.src = bgUrl || "";
@@ -1100,10 +1101,9 @@ const closePanel = () => {
   overlay.classList.remove('active');
   document.body.classList.remove('window-open');
 
-  // Small delay to clear class after transition
   setTimeout(() => {
     windowEl.classList.remove('is-centered');
-  }, 400); // Increased slightly to match CSS transition
+  }, 400); 
   if (lastFocusedElement) lastFocusedElement.focus();
 };
 
@@ -1199,7 +1199,6 @@ if (isDesktop) {
 
     // --- 2. Cursor Animation Loop ---
     const animateCursor = () => {
-        // Linear interpolation for smooth trailing
         currentX += (mouseX - currentX) * 0.15; 
         currentY += (mouseY - currentY) * 0.15;
         
@@ -1207,7 +1206,6 @@ if (isDesktop) {
            cursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
         }
 
-        // If movement is very small, stop the loop to save battery
         if (Math.abs(mouseX - currentX) > 0.1 || Math.abs(mouseY - currentY) > 0.1) {
              window.requestAnimationFrame(animateCursor);
         } else {
@@ -1222,7 +1220,6 @@ if (isDesktop) {
         let bounds;
         const inner = card.querySelector('.album-inner');
         const glare = card.querySelector('.glare');
-        // UPDATED SELECTION
         const art = card.querySelector('.album-art');
         const textElements = card.querySelectorAll('h2, .artist, .review');
         let cardTicking = false;
