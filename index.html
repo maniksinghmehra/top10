@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta property="og:title" content="Top 10 Albums 2025 — Manik Singh Mehra">
+<meta property="og:description" content="A curated list of the year's best music.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0b0d10">
+<title>Top Albums — 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+New&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --text: #eaeaea;
+  --muted: rgba(234,234,234,0.6);
+  --card: rgba(22,24,28,0.92);
+  --card-border: rgba(255,255,255,0.08);
+  --radius: 14px;
+  --font: 'Inter', sans-serif;
+  --card-width: 260px;
+}
+
+/* RESET */
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) #0b0d10;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font);
+  color: var(--text);
+  background: #0b0d10;
+  overflow-x: hidden;
+  cursor: default;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* LOCK BODY SCROLL WHEN MODAL OPEN */
+body.window-open {
+  overflow: hidden;
+  touch-action: none;
+  padding-right: 10px;
+}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0b0d10; }
+::-webkit-scrollbar-thumb { 
+  background: rgba(255, 255, 255, 0.15); 
+  border-radius: 5px; 
+  border: 2px solid #0b0d10; 
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+
+/* BACKGROUND */
+.bg {
+  position: fixed;
+  inset: -60%;
+  z-index: -2;
+  filter: blur(50px);
+  will-change: transform; 
+  transform: translateZ(0);
+}
+.bg::before, .bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+.bg::before {
+  background: 
+    radial-gradient(40% 35% at 20% 30%, rgba(42,47,85,.65), transparent 60%),
+    radial-gradient(45% 40% at 80% 40%, rgba(27,58,75,.65), transparent 60%),
+    radial-gradient(35% 35% at 50% 80%, rgba(46,27,63,.6), transparent 60%);
+  animation: flowA 90s linear infinite;
+}
+.bg::after {
+  background: 
+    radial-gradient(38% 34% at 30% 60%, rgba(140,40,55,.45), transparent 65%),
+    radial-gradient(30% 30% at 70% 20%, rgba(110,30,45,.35), transparent 65%);
+  animation: flowB 120s linear infinite;
+}
+@keyframes flowA { to { transform: rotate(360deg); } }
+@keyframes flowB { to { transform: rotate(-360deg); } }
+
+/* NOISE TEXTURE */
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAA5OTkAAABMTExERERmZmYzMzMyMjJ43I3xAAAACHRSTlMAMwAqzMzMzMwnXQ31AAAAWUlEQVQ4y2NgwA78DgwM+hkYmB0YmD8wMD9gYJ7AwHyAgXkAAwPDDwYGxv8MDAwM/xgYGP4xMDP8+8/AMJ/xHwPDf8Z/DAz/Gf8xMPxn/M/A8J/xPwPDf0YGAE/kF/281b5DAAAAAElFTkSuQmCC");
+  background-size: 120px;
+}
+
+/* CURSOR SPOTLIGHT */
+.cursor-glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  margin-left: -300px;
+  margin-top: -300px;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 60%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  will-change: transform;
+}
+
+/* WRAP */
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 20px 120px;
+}
+
+/* --- HEADER --- */
+header {
+  text-align: center;
+  margin-bottom: 75px; /* UPDATED to 75px */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+header h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600; 
+  font-size: 2rem; 
+  line-height: 1.2;
+  color: #eaeaea;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+header p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-top: 0;
+}
+
+/* --- FOOTER BUTTONS --- */
+.footer-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 70px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 1.2s;
+}
+
+.footer-btn {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d0d0d0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50px;
+  background: rgba(255,255,255,0.03);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  user-select: none;
+  text-decoration: none;
+}
+
+.footer-btn svg {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.footer-btn:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.3);
+  transform: translateY(-3px);
+  color: #ffffff;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+}
+
+.footer-btn:hover svg { opacity: 1; }
+.footer-btn:active { transform: translateY(-1px); opacity: 0.8; }
+
+/* PYRAMID & ROWS */
+.pyramid {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  align-items: stretch;
+  opacity: 0; 
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.row.intro-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ALBUM CARD */
+.album {
+  width: var(--card-width);
+  flex: 0 0 var(--card-width);
+  cursor: pointer;
+  outline: none; 
+  position: relative;
+  background: transparent;
+  border: none;
+  text-align: left;
+  perspective: 1200px; /* Increased for deeper parallax */
+  border-radius: 10px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.album:focus-visible .album-inner {
+  box-shadow: 0 0 0 2px var(--text);
+}
+
+.album-inner {
+  height: 100%; 
+  min-height: 0; 
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden; 
+  position: relative;
+  /* UPDATED TRANSITIONS FOR PARALLAX */
+  transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, filter 0.25s ease;
+  box-shadow: 
+    0 15px 35px rgba(0,0,0,0.6), 
+    0 0 80px -10px rgba(160, 40, 60, 0.22);
+  transform-style: preserve-3d; /* Key for depth */
+  will-change: transform;
+}
+
+/* PARALLAX ELEMENTS - Initially flat */
+.album-inner img,
+.album-inner h2,
+.album-inner .artist,
+.album-inner .review {
+  transform: translateZ(0);
+  transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* GLARE EFFECT */
+.glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15), transparent 70%);
+  opacity: 0;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 50;
+  transition: opacity 0.2s ease;
+  transform: translateZ(1px); /* Sit on top */
+}
+
+@media (hover: hover) {
+  .pyramid:has(.album:hover) .album:not(:hover) .album-inner {
+    filter: brightness(.45) saturate(.7) blur(.6px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5); 
+  }
+
+  .album:hover .album-inner {
+    box-shadow: 
+      0 25px 50px rgba(0,0,0,0.8),
+      0 0 100px -5px rgba(170, 50, 70, 0.35);
+  }
+  
+  .album:hover .glare {
+    opacity: 1;
+  }
+}
+
+.album img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  user-select: none;
+  pointer-events: none;
+  /* Prepare for 3D */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+}
+
+/* MAIN ALBUM TITLES */
+.album h2 { 
+  font-size: 0.92rem;        
+  font-weight: 600;          
+  margin-bottom: 4px; 
+  color: var(--text);
+  line-height: 1.35;         
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;   
+  min-height: 2.6em;
+  text-wrap: balance;
+}
+
+.album .artist { font-size: .8rem; color: #b5b5b5; font-style: italic; margin-bottom: 12px; }
+.album .review { font-size: .88rem; color: #d0d0d0; margin-top: 0; }
+
+/* RIPPLE EFFECT */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-anim 0.6s linear;
+  background-color: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  z-index: 100;
+}
+@keyframes ripple-anim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* --- WINDOW & OVERLAY --- */
+.review-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(120% 120% at 50% 50%, rgba(0,0,0,.15), rgba(0,0,0,.65));
+  backdrop-filter: blur(38px) saturate(.85); 
+  -webkit-backdrop-filter: blur(38px) saturate(.85);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.review-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.review-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(900px, 94vw);
+  max-height: 88vh;
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.03) 35%, rgba(0,0,0,.35) 100%);
+  backdrop-filter: blur(34px) saturate(1.1);
+  -webkit-backdrop-filter: blur(34px) saturate(1.1);
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,.14);
+  padding: 48px;
+  padding-bottom: 80px; 
+  overflow-y: auto; 
+  overscroll-behavior: contain; 
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.25), inset 0 -40px 60px rgba(0,0,0,.45), 0 60px 140px rgba(0,0,0,.9);
+  will-change: transform, opacity;
+  transform: translate(-50%, -50%) scale(0.94);
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s ease;
+  outline: none;
+}
+
+.review-overlay.active .review-window {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.15), opacity 0.5s ease;
+}
+
+/* STAGGERED MODAL ANIMATION */
+.rw-content > * {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.review-overlay.active .rw-content > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.review-overlay.active h3 { transition-delay: 0.1s; }       
+.review-overlay.active .rw-artist { transition-delay: 0.2s; } 
+.review-overlay.active .rw-text { transition-delay: 0.3s; }   
+.review-overlay.active .meta-row { transition-delay: 0.4s; }  
+.review-overlay.active .rw-actions { transition-delay: 0.5s; }
+
+.rw-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* MODES */
+.review-window.is-centered .rw-grid {
+  display: block; 
+  max-width: 680px; 
+  margin: 0 auto;
+  text-align: left;
+}
+.review-window.is-centered .rw-visual,
+.review-window.is-centered .meta-row,
+.review-window.is-centered .rw-actions {
+  display: none !important;
+}
+.review-window.is-centered h3 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+.review-window.is-centered .rw-artist {
+  margin-bottom: 40px;
+  color: var(--text);
+  opacity: 0.6;
+}
+.review-window.is-centered .rw-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(234,234,234,0.85);
+}
+
+/* FORM STYLES */
+.review-window h3 { font-size: 1.6rem; color: var(--text); line-height: 1.1; margin-bottom: 6px; }
+.review-window .rw-artist { color: var(--muted); margin-bottom: 24px; font-size: 1.1rem; font-style: italic;}
+.review-window .rw-text { line-height: 1.7; color: var(--text); font-size: 1rem; opacity: 0.9; }
+
+.meta-row {
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.meta-item { display: flex; flex-direction: column; gap: 6px; }
+.meta-label {
+  font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted); opacity: 0.7;
+}
+.meta-value {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem; color: #ffffff; font-weight: 600; letter-spacing: -0.02em;
+}
+
+.rw-actions { margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap; }
+
+.btn {
+  text-decoration: none; padding: 12px 24px; border-radius: 50px; font-size: 0.85rem; font-weight: 500;
+  transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.08); color: #eaeaea; border: 1px solid rgba(255,255,255,0.1); 
+  cursor: pointer;
+}
+.btn:hover { 
+  transform: translateY(-2px); filter: brightness(1.2); background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.2);
+}
+.btn:active { transform: translateY(0); }
+.btn:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute; top: 28px; right: 28px; width: 36px; height: 36px; 
+  background: transparent; border: none;
+  cursor: pointer; color: var(--muted); opacity: 0.6;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease, color 0.3s ease;
+  z-index: 10; padding: 0; display: flex; align-items: center; justify-content: center;
+}
+.close-btn svg { width: 24px; height: 24px; display: block; }
+.close-btn:hover { opacity: 1; color: var(--text); transform: rotate(90deg) scale(1.1); }
+.close-btn:active { transform: rotate(90deg) scale(0.95); }
+.close-btn:focus-visible { outline: 2px solid white; opacity: 1; }
+
+/* HONORABLE MENTIONS */
+.honorable { 
+  margin-top: 96px; text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: 1.0s;
+}
+.honorable h2 { font-size: .7rem; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
+
+.honorable-grid { 
+  display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; align-items: flex-start;
+}
+.honorable .album { 
+  width: 190px; flex: 0 0 190px; opacity: 0; transform: translateY(30px);
+  transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.honorable .album.visible { opacity: 1; transform: translateY(0); }
+
+/* VIBRANT HONORABLE MENTIONS */
+.honorable .album-inner { 
+  height: fit-content; min-height: 0; padding: 10px 12px; 
+  opacity: .9; 
+  background: rgba(22,24,28,0.85); 
+  border: 1px solid rgba(255,255,255,0.12); 
+  filter: saturate(1.1) contrast(1.05); 
+  display: flex; flex-direction: column; 
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5), 0 0 50px -10px rgba(160, 40, 60, 0.15); 
+}
+
+.honorable .album-inner img { margin-bottom: 8px; }
+.honorable .album .artist { margin-bottom: 6px; font-size: 0.75rem; }
+
+/* FIX FOR HONORABLE TITLES */
+.honorable .album h2 { 
+  font-size: 0.85rem;          
+  font-weight: 600;            
+  letter-spacing: -0.01em;     
+  line-height: 1.35;           
+  margin-bottom: 4px;
+  color: #eaeaea;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 2.7em;               
+  text-transform: none;
+}
+
+.honorable .album:hover .album-inner { 
+  opacity: 1; 
+  transform: translateY(-3px); 
+  filter: saturate(1.15) contrast(1.1); 
+  box-shadow: 0 18px 35px rgba(0,0,0,0.7), 0 0 70px -5px rgba(170, 50, 70, 0.3); 
+}
+.honorable .review { font-size: .8rem; opacity: .85; margin-top: 0; }
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .wrap { padding: 40px 20px 80px; }
+  .pyramid { gap: 24px; }
+  .row { flex-wrap: wrap; gap: 16px; }
+  .album { width: calc(50% - 8px); flex: 0 0 calc(50% - 8px); }
+  .album-inner { min-height: 0; padding: 12px; }
+  .honorable-grid { gap: 16px; }
+  .honorable .album { width: calc(50% - 8px); flex: 0 0 calc(50% - 8px); }
+  
+  .review-overlay {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(0,0,0,0.8); 
+  }
+  
+  .review-window {
+    background: rgba(22, 24, 28, 0.95) !important;
+    backdrop-filter: blur(16px) !important; 
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255,255,255,0.15);
+    width: 96vw !important; 
+    height: auto; 
+    max-height: 85vh; 
+    padding: 24px 20px 80px 20px !important; 
+    border-radius: 20px; 
+    top: 50% !important; 
+    left: 50% !important; 
+    bottom: auto !important;
+    transform: translate(-50%, 100vh) !important;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1) !important;
+  }
+  .review-overlay.active .review-window { transform: translate(-50%, -50%) !important; }
+  .album-inner {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
+    transition: transform 0.1s ease !important; 
+  }
+
+  /* Reduce blur load on mobile */
+  .bg { filter: blur(30px); opacity: 0.6; }
+  .bg::before, .bg::after { animation: none !important; }
+
+  .rw-grid { grid-template-columns: 1fr; gap: 16px; }
+  
+  .rw-visual { 
+    max-width: 220px; 
+    width: 100%;
+    margin: 0 auto; 
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+  
+  .rw-content { text-align: center; }
+  .review-window h3 { font-size: 1.3rem; margin-bottom: 4px; }
+  .review-window .rw-artist { font-size: 0.95rem; margin-bottom: 12px; }
+  .review-window .rw-text { font-size: 0.9rem; line-height: 1.5; }
+  .meta-row { justify-content: center; margin-top: 20px; padding-top: 16px; gap: 20px; }
+  .rw-actions { justify-content: center; margin-top: 20px; }
+  .btn { padding: 10px 20px; font-size: 0.8rem; }
+  .cursor-glow { display: none !important; }
+  .close-btn { top: 16px; right: 16px; background: rgba(255,255,255,0.1); border-radius: 50%; width: 32px; height: 32px; }
+
+  .album h2 {
+    min-height: auto; 
+    height: auto;
+    font-size: 0.85rem;     
+    font-weight: 500;       
+    -webkit-line-clamp: 4;  
+    margin-bottom: 6px;
+  }
+}
+
+/* UPDATED VISUAL SIZE FOR DESKTOP */
+.rw-visual img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+  display: block;
+}
+
+@media (max-width: 768px) {
+
+  .rw-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .rw-visual {
+    width: 130px !important;
+    max-width: 130px !important;
+    min-width: 130px !important;
+    margin: 0 auto 12px !important;
+  }
+
+  .rw-visual img {
+    width: 130px !important;
+    height: 130px !important;
+    max-width: 130px !important;
+    max-height: 130px !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+    border-radius: 12px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+  
+<div class="bg"></div>
+<div class="noise"></div> 
+<div class="wrap">
+
+
+  <header>
+    <h1>Top 10 Albums 2025</h1>
+    <p>by Manik Singh Mehra</p>
+  </header>
+
+  <section class="pyramid" id="pyramid-container"></section>
+
+  <section class="honorable">
+    <h2>Honorable Mentions</h2>
+    <div class="honorable-grid" id="honorable-container"></div>
+  </section>
+
+  <div class="footer-row">
+    <a class="footer-btn" id="note-trigger" tabindex="0" role="button">
+      A Note by Manik
+    </a>
+  </div>
+
+</div>
+
+<div class="cursor-glow" id="cursor-glow"></div>
+
+<div class="review-overlay" id="overlay">
+  <div class="review-window" id="review-window" role="dialog" aria-modal="true" aria-labelledby="rw-title" tabindex="-1">
+    
+    <button class="close-btn" id="close-btn" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="rw-grid">
+      <div class="rw-visual">
+        <img id="rw-img" src="" alt="Album Cover" draggable="false">
+      </div>
+
+      <div class="rw-content">
+        <h3 id="rw-title"></h3>
+        <div class="rw-artist" id="rw-artist"></div>
+        <div class="rw-text" id="rw-text"></div>
+
+        <div class="meta-row">
+          <div class="meta-item">
+            <span class="meta-label">Released</span>
+            <span class="meta-value" id="m-released">—</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Runtime</span>
+            <span class="meta-value" id="m-runtime">—</span>
+          </div>
+        </div>
+
+        <div class="rw-actions">
+          <a href="#" class="btn primary" target="_blank" rel="noopener">Spotify</a>
+          <a href="#" class="btn secondary" target="_blank" rel="noopener">Apple Music</a>
+        </div>
+      </div>
+    </div>
+
+  
+
+  </div>
+</div>
+
+<script>
+const topAlbums = [
+  {
+    rank: 1,
+    title: "Ego Death at a Bachelorette Party",
+    artist: "Hayley Williams",
+    released: "28 Aug 2025",
+    runtime: "42m 15s",
+    cover: "https://i.scdn.co/image/ab67616d0000b273850c0e3fdd3b3b5cb0b7fa63",
+    spotify: "https://open.spotify.com/album/3MROTtttK946gHaTkXeP8b?si=Umt10HlzRaicJEUXRUAprQ",
+    apple: "https://music.apple.com/us/album/ego-death-at-a-bachelorette-party/1850011909",
+    review: "A jagged, uncomfortable, and brilliant deconstruction of social performance. It feels like a panic attack at a celebration. The production is minimal but sharp as a knife.",
+    shortReview: "Social performance."
+  },
+  {
+    rank: 2,
+    title: "The Art of Loving",
+    artist: "Olivia Dean",
+    released: "14 Feb 2025",
+    runtime: "38m 12s",
+    cover: "https://i.scdn.co/image/ab67616d0000b2739a336bfb6d40bbd90a507417",
+    spotify: "https://open.spotify.com/album/0l8zYqoUeBYg47Gmevq9HZ?si=zDoVqfn7S7G1-5Lx7vCq9g",
+    apple: "https://music.apple.com/us/album/the-art-of-loving/1817609404",
+    review: "Tender and intentional. It moves from radio-friendly joy to sweeping soul without ever losing its intimacy.",
+    shortReview: "Tender soul."
+  },
+  {
+    rank: 3,
+    title: "I Love My Computer",
+    artist: "Ninajirachi",
+    released: "08 Aug 2025",
+    runtime: "39m 49s",
+    cover: "https://i.scdn.co/image/ab67616d0000b273e04b8c0b83df4247f25ac979",
+    spotify: "https://open.spotify.com/album/77CZUF57sYqgtznUe3OikQ?si=MTYdcdqSTvyPYcQjjRo2Zw",
+    apple: "https://music.apple.com/us/album/i-love-my-computer/1824602984",
+    review: "A surprisingly moving tribute to 2010s internet culture. Glitchy, hyper-kinetic, yet deeply sentimental.",
+    shortReview: "Digital sentiment."
+  },
+  {
+    rank: 4,
+    title: "Getting Killed",
+    artist: "Geese",
+    released: "26 Sep 2025",
+    runtime: "45m 35s",
+    cover: "https://i.scdn.co/image/ab67616d0000b27345e82ae0372a50834825c018",
+    spotify: "https://open.spotify.com/album/0eeXb23yMW6EaIgm63xxPC?si=Gw_vC80uSEe8Ajaz6ELyMg",
+    apple: "https://music.apple.com/us/album/getting-killed/1818548779",
+    review: "Art-rock perfection. Volatile, chaotic, and featuring the best rhythm section of the year.",
+    shortReview: "Chaotic art-rock."
+  },
+  {
+    rank: 5,
+    title: "Let God Sort 'Em Out",
+    artist: "Clipse",
+    released: "04 Jul 2025",
+    runtime: "38m 10s",
+    cover: "https://i.scdn.co/image/ab67616d0000b273ef854fe1d04279372a96f3d6",
+    spotify: "https://open.spotify.com/album/17ScNnJ0lSWajodZaRpHdQ?si=uYb9RPmdTjOCS6tSNmirFA",
+    apple: "https://music.apple.com/us/album/let-god-sort-em-out/1862672249",
+    review: "Dense, cryptic luxury rap. The production is dusty and divine, sounding like it was recorded in a cathedral.",
+    shortReview: "Cryptic luxury."
+  },
+  {
+    rank: 6,
+    title: "Alfredo 2",
+    artist: "Freddie Gibbs",
+    released: "12 Nov 2025",
+    runtime: "34m 45s",
+    cover: "https://i.scdn.co/image/ab67616d0000b273e098f51a1a2ebb827dc6099a",
+    spotify: "https://open.spotify.com/album/5WrpCQmbTUZuzNxGCPUFSV?si=gLNk9irYROWzpqrFjPi8_A",
+    apple: "https://music.apple.com/us/album/alfredo-2/1824019687",
+    review: "The chemistry is still untouched. Smoother, darker, and more reflective than the original.",
+    shortReview: "Untouchable duo."
+  },
+  {
+    rank: 7,
+    title: "Magic, Alive!",
+    artist: "McKinley Dixon",
+    released: "06 Jun 2025",
+    runtime: "41m 00s",
+    cover: "https://i.scdn.co/image/ab67616d0000b273a35f4d1997eae45a4c229658",
+    spotify: "https://open.spotify.com/album/0RXsRwX4iMCKkSFPoSs8Go?si=N_ww1w7MREKAuJvTtRvZSw",
+    apple: "https://music.apple.com/us/album/magic-alive/1788296577",
+    review: "Jazz-rap that feels like a broadway tragedy. Lush orchestration meets biting reality.",
+    shortReview: "Lush jazz-rap."
+  },
+  {
+    rank: 8,
+    title: "Lonely People With Power",
+    artist: "Deafheaven",
+    released: "28 Mar 2025",
+    runtime: "48m 20s",
+    cover: "https://i.scdn.co/image/ab67616d0000b2732b6889e803c1e1334c0c2d75",
+    spotify: "https://open.spotify.com/album/5Eh3xMVdGFAUiYwuoPOzXc?si=kDqbn4XMQiOnlY91-8lBUQ",
+    apple: "https://music.apple.com/us/album/lonely-people-with-power/1792077173",
+    review: "A pivot back to crushing heaviness, but with the shoegaze melody of 'Infinite Granite' intact.",
+    shortReview: "Crushing melody."
+  },
+  {
+    rank: 9,
+    title: "The Passionate Ones",
+    artist: "Nourished by Time",
+    released: "15 May 2025",
+    runtime: "32m 00s",
+    cover: "https://i.scdn.co/image/ab67616d0000b273a3aa51a22f09990bad35633c",
+    spotify: "https://open.spotify.com/album/5Y3SsoA0yibZh5946vXgKS?si=wMSTjy1sQneICFea8rfLVg",
+    apple: "https://music.apple.com/us/album/the-passionate-ones/1807286924",
+    review: "A hidden gem of 2025. Raw indie energy that feels like a lost tape from 2005.",
+    shortReview: "Raw indie."
+  },
+  {
+    rank: 10,
+    title: "Forever Howlong",
+    artist: "Black Country, New Road",
+    released: "04 Apr 2025",
+    runtime: "52m 10s",
+    cover: "https://i.scdn.co/image/ab67616d0000b273876f720551132b50c9232fad",
+    spotify: "https://open.spotify.com/album/5FjaEW3Hi8vD2aoJNWln4t?si=ZtkIYFIxQqSKomW-AFPlsQ",
+    apple: "https://music.apple.com/us/album/forever-howlong/1783713554",
+    review: "Baroque pop that feels fragile and massive at once. The woodwind arrangements are career-best.",
+    shortReview: "Baroque masterpiece."
+  }
+];
+
+const honorableMentions = [
+  {
+    title: "Willoughby Tucker, I'll Always Love You",
+    artist: "Ethel Cain",
+    cover: "https://i.scdn.co/image/ab67616d0000b2737da9ae8f4a4d633772c9513b",
+    review: "A haunting Southern Gothic return.",
+    shortReview: "Honorable Mention.",
+    released: "08 Aug 2025",
+    runtime: "73m 35s",
+    spotify: "https://open.spotify.com/album/3iSPMfhw4P30tFrROrbkFm?si=lt9jP74lQiW-aiYthJPS5w",
+    apple: "https://music.apple.com/in/album/willoughby-tucker-ill-always-love-you/1818431571"
+  },
+  {
+    title: "Revengeseekerz",
+    artist: "Jane Remover",
+    cover: "https://i.scdn.co/image/ab67616d0000b273ab0d83b752dcf9f2a7ddd51b",
+    review: "Shoegaze meets hyperpop chaos.",
+    shortReview: "Honorable Mention.",
+    released: "04 Apr 2025",
+    runtime: "49m 26s",
+    spotify: "https://open.spotify.com/album/21b4cDNse2AMpj94ykfuON?si=jKKgr47rRMSfIOKY0TSftA",
+    apple: "https://music.apple.com/in/album/revengeseekerz/1800020675"
+  },
+  {
+    title: "Blurrr",
+    artist: "Joanne Robertson",
+    cover: "https://i.scdn.co/image/ab67616d0000b273724bbca364fdbc66c1addfc5",
+    review: "Acoustic haze and poetry.",
+    shortReview: "Honorable Mention.",
+    released: "19 Sep 2025",
+    runtime: "43m 30s",
+    spotify: "https://open.spotify.com/album/5WhOeAAZdZNuVPd0owQ88D?si=tNS--QImR22zKQjrQcYGrQ",
+    apple: "https://music.apple.com/in/album/blurrr/1806107071"
+  },
+  {
+    title: "viagr aboys",
+    artist: "Viagra Boys",
+    cover: "https://i.scdn.co/image/ab67616d0000b273bf26b3f697a7d4a039a6e3a9",
+    review: "Cinematic production on a massive scale.",
+    shortReview: "Honorable Mention.",
+    released: "25 Apr 2025",
+    runtime: "37m 22s",
+    spotify: "https://open.spotify.com/album/0ibbISvq4loJXVtZquKrQB?si=GEsqtlnuQoWKr9eSfBhxGg",
+    apple: "https://music.apple.com/in/album/viagr-aboys/1790124734"
+  },
+  {
+    title: "Total Freedom",
+    artist: "Cowgirl Clue",
+    cover: "https://i.scdn.co/image/ab67616d0000b27301637a663475859b821607e2",
+    review: "Fairy-core punk energy.",
+    shortReview: "Honorable Mention.",
+    released: "25 Sep 2025",
+    runtime: "33m 31s",
+    spotify: "https://open.spotify.com/album/5bvu4s2hEDC33yV5C5N4LZ?si=7kvjZBgiQk6Ss6Rkwedt2g",
+    apple: "https://music.apple.com/in/album/total-freedom/1840623210"
+  }
+];
+
+// --- NOTE CONTENT ---
+const noteData = `
+  2025 felt like a collision of eras. We saw the return of massive baroque instrumentation clashing against the sharp, jagged edges of digital hyper-production. <br><br>
+  
+  Albums this year didn't just want to be heard; they wanted to be felt, often physically. From the panic-attack rhythms of Hayley Williams to the lush, orchestral tragedy of Black Country, New Road, there was a refusal to settle for background noise.<br><br>
+  
+  This list is a collection of the moments that stopped me in my tracks. The glitches, the screams, and the silence in between.
+`;
+
+// --- 2. RENDER FUNCTIONS ---
+
+const createAlbumCard = (album, isHonorable = false) => {
+  const article = document.createElement('article');
+  article.className = 'album';
+  article.tabIndex = 0;
+  article.setAttribute('role', 'button');
+  
+  // Attach Data for Modal
+  article.dataset.title = album.title;
+  article.dataset.artist = album.artist;
+  article.dataset.review = album.review;
+  article.dataset.released = album.released || "";
+  article.dataset.runtime = album.runtime || "";
+  article.dataset.spotify = album.spotify || "#";
+  article.dataset.apple = album.apple || "#";
+
+  // Hybrid Lazy Loading
+  const loadingType = (album.rank && album.rank <= 3) ? 'eager' : 'lazy';
+
+  // UPDATED: Now shows full title without substring cut-off
+  const displayTitle = isHonorable ? album.title : `${album.rank}. ${album.title}`;
+
+  article.innerHTML = `
+    <div class="album-inner">
+      <div class="glare"></div> <img src="${album.cover}" alt="${album.title}" loading="${loadingType}" decoding="async" draggable="false">
+      <h2>${displayTitle}</h2>
+      <div class="artist">${album.artist}</div>
+      <div class="review">${album.shortReview}</div>
+    </div>
+  `;
+  return article;
+};
+
+const renderPyramid = () => {
+  const container = document.getElementById('pyramid-container');
+  // Define layout pattern: 1 card, then 2, then 3, then 4
+  const rowPattern = [1, 2, 3, 4];
+  let albumIndex = 0;
+
+  // Stagger Delay Variable
+  let delayCounter = 0;
+
+  rowPattern.forEach(count => {
+    if (albumIndex >= topAlbums.length) return;
+
+    const row = document.createElement('div');
+    row.className = 'row';
+    
+    // Add staggered delay to each row
+    row.style.transitionDelay = `${delayCounter * 0.15}s`;
+    delayCounter++;
+
+    for (let i = 0; i < count; i++) {
+      if (albumIndex < topAlbums.length) {
+        const card = createAlbumCard(topAlbums[albumIndex]);
+        row.appendChild(card);
+        albumIndex++;
+      }
+    }
+    container.appendChild(row);
+  });
+};
+
+const renderHonorable = () => {
+  const container = document.getElementById('honorable-container');
+  honorableMentions.forEach(album => {
+    const card = createAlbumCard(album, true);
+    container.appendChild(card);
+  });
+};
+
+// --- 3. EXECUTE RENDER ---
+renderPyramid();
+renderHonorable();
+
+// --- TRIGGER INTRO ANIMATION ---
+// Wait for DOM content to be ready, then trigger the fade-in class
+window.addEventListener('DOMContentLoaded', () => {
+  const rows = document.querySelectorAll('.row');
+  // Small timeout to ensure CSS transitions catch the state change
+  setTimeout(() => {
+    rows.forEach(row => {
+      row.classList.add('intro-visible');
+    });
+  }, 100);
+});
+
+// --- 4. INTERACTION LOGIC ---
+const overlay = document.getElementById('overlay');
+const closeBtn = document.getElementById('close-btn');
+const windowEl = document.getElementById('review-window');
+const titleEl = document.getElementById('rw-title');
+const artistEl = document.getElementById('rw-artist');
+const textEl = document.getElementById('rw-text');
+const mReleased = document.getElementById('m-released');
+const mRuntime = document.getElementById('m-runtime');
+const spotifyBtn = document.querySelector('.btn.primary');
+const appleBtn = document.querySelector('.btn.secondary');
+const rwImg = document.getElementById('rw-img'); 
+let lastFocusedElement;
+
+const openModal = (album) => {
+  lastFocusedElement = album;
+
+  // Standard Album Mode
+  windowEl.classList.remove('is-centered');
+  
+  titleEl.textContent = album.dataset.title;
+  artistEl.textContent = album.dataset.artist;
+  textEl.textContent = album.dataset.review;
+  
+  const cardImg = album.querySelector('img');
+  rwImg.src = cardImg ? cardImg.src : "";
+  
+  spotifyBtn.href = album.dataset.spotify || '#';
+  appleBtn.href = album.dataset.apple || '#';
+
+  mReleased.textContent = album.dataset.released || "—";
+  mRuntime.textContent = album.dataset.runtime || "—";
+  
+  // RESET SCROLL
+  windowEl.scrollTop = 0;
+
+  overlay.classList.add('active');
+  document.body.classList.add('window-open');
+  
+  setTimeout(() => closeBtn.focus(), 50);
+};
+
+const openNote = (e) => {
+  lastFocusedElement = e.currentTarget;
+
+  // Note Mode
+  windowEl.classList.add('is-centered');
+  
+  titleEl.textContent = "A Note on 2025";
+  artistEl.textContent = "by Manik Singh Mehra";
+  textEl.innerHTML = noteData; 
+  
+  // RESET SCROLL
+  windowEl.scrollTop = 0;
+
+  overlay.classList.add('active');
+  document.body.classList.add('window-open');
+  
+  setTimeout(() => closeBtn.focus(), 50);
+};
+
+const closePanel = () => {
+  overlay.classList.remove('active');
+  document.body.classList.remove('window-open');
+
+  // Small delay to clear class after transition
+  setTimeout(() => {
+    windowEl.classList.remove('is-centered');
+  }, 400); // Increased slightly to match CSS transition
+  if (lastFocusedElement) lastFocusedElement.focus();
+};
+
+// --- KEYBOARD TRAP FOR ACCESSIBILITY ---
+const trapFocus = (e) => {
+  if (!overlay.classList.contains('active')) return;
+
+  const focusableElements = windowEl.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+
+  if (e.key === 'Tab') {
+    if (e.shiftKey) { // Shift + Tab
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else { // Tab
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }
+};
+
+// Event Delegation
+document.addEventListener('click', (e) => {
+  const album = e.target.closest('.album');
+  if (album) openModal(album);
+});
+
+// Footer Clicks
+document.getElementById('note-trigger').addEventListener('click', openNote);
+document.getElementById('note-trigger').addEventListener('keydown', (e) => {
+   if (e.key === 'Enter' || e.key === ' ') {
+     e.preventDefault();
+     openNote(e);
+   }
+});
+
+document.addEventListener('keydown', (e) => {
+  const album = e.target.closest('.album');
+  if (album && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault();
+    openModal(album);
+  }
+  
+  if (overlay.classList.contains('active')) {
+      if(e.key === 'Escape') closePanel();
+      trapFocus(e);
+  }
+});
+
+closeBtn.addEventListener('click', closePanel);
+overlay.addEventListener('click', e => {
+  if(e.target === overlay) closePanel();
+});
+
+// Scroll Reveal Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target); 
+    }
+  });
+}, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+document.querySelectorAll('.row, .honorable .album').forEach(el => observer.observe(el));
+
+// --- 3D TILT ENGINE with GLARE & PARALLAX ---
+const isDesktop = window.matchMedia("(min-width: 769px) and (hover: hover)").matches;
+
+if (isDesktop) {
+    const cursor = document.getElementById('cursor-glow');
+    let mouseX = 0, mouseY = 0;
+    let currentX = 0, currentY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    const animateCursor = () => {
+        currentX += (mouseX - currentX) * 0.15; 
+        currentY += (mouseY - currentY) * 0.15;
+        cursor.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        requestAnimationFrame(animateCursor);
+    };
+    animateCursor();
+
+    document.querySelectorAll('.album').forEach(card => {
+        let bounds;
+        const inner = card.querySelector('.album-inner');
+        const glare = card.querySelector('.glare');
+        const img = card.querySelector('img');
+        const textElements = card.querySelectorAll('h2, .artist, .review');
+        
+        card.addEventListener('mouseenter', () => {
+            bounds = card.getBoundingClientRect();
+            inner.style.willChange = 'transform';
+        });
+
+        card.addEventListener('mousemove', (e) => {
+            if (!bounds) return;
+            const x = e.clientX - bounds.left;
+            const y = e.clientY - bounds.top;
+            
+            // Calculate rotation
+            const xRotation = -((y - bounds.height / 2) / 10); 
+            const yRotation = ((x - bounds.width / 2) / 10);
+            
+            // Calculate Glare Position
+            const glareX = (x / bounds.width) * 100;
+            const glareY = (y / bounds.height) * 100;
+
+            requestAnimationFrame(() => {
+                // Apply Tilt to Card
+                inner.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) translateY(-5px)`;
+                
+                // Update Glare Gradient
+                if(glare) {
+                    glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.25), transparent 50%)`;
+                }
+
+                // Apply Parallax Depth
+                if(img) img.style.transform = `translateZ(30px) scale(1.02)`;
+                textElements.forEach(el => el.style.transform = `translateZ(20px)`);
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            inner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            inner.style.willChange = 'auto';
+            
+            // Reset Parallax
+            if(img) img.style.transform = 'translateZ(0) scale(1)';
+            textElements.forEach(el => el.style.transform = 'translateZ(0)');
+            
+            bounds = null; 
+        });
+    });
+} else {
+    const cursor = document.getElementById('cursor-glow');
+    if(cursor) cursor.style.display = 'none';
+}
+
+// Ripple Effect
+document.addEventListener('click', function(e) {
+  const card = e.target.closest('.album');
+  if (card) {
+    if (navigator.vibrate) navigator.vibrate(8);
+    const inner = card.querySelector('.album-inner');
+    const rect = inner.getBoundingClientRect();
+    const circle = document.createElement('span');
+    const diameter = Math.max(rect.width, rect.height);
+    const radius = diameter / 2;
+    circle.style.width = circle.style.height = `${diameter}px`;
+    circle.style.left = `${e.clientX - rect.left - radius}px`;
+    circle.style.top = `${e.clientY - rect.top - radius}px`;
+    circle.classList.add('ripple');
+    const existing = inner.getElementsByClassName('ripple')[0];
+    if (existing) existing.remove();
+    inner.appendChild(circle);
+  }
+});
+</script>
+
+</body>
+</html>
