@@ -242,8 +242,7 @@ header p {
   perspective: 1200px;
   border-radius: 10px;
   -webkit-tap-highlight-color: transparent;
-  /* Performance Optimization */
-  contain: layout paint;
+  /* FIX: REMOVED "contain" to fix 3D clipping/square glitch */
 }
 
 .album:focus-visible .album-inner {
@@ -270,8 +269,8 @@ header p {
   will-change: transform;
 }
 
-/* PARALLAX ELEMENTS - Initially flat */
-.album-inner img,
+/* PARALLAX ELEMENTS */
+.album-inner .album-art,
 .album-inner h2,
 .album-inner .artist,
 .album-inner .review {
@@ -312,16 +311,18 @@ header p {
   }
 }
 
-.album img {
+/* REPLACED IMG WITH BACKGROUND DIV TO FIX GLITCHES & EXTENSIONS */
+.album-art {
   width: 100%;
-  height: auto;
   aspect-ratio: 1/1;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: var(--radius);
   margin-bottom: 14px;
-  user-select: none;
-  pointer-events: none;
+  pointer-events: none; 
   box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+  background-color: #222;
 }
 
 /* MAIN ALBUM TITLES */
@@ -511,7 +512,7 @@ header p {
   transform: translateY(30px);
   animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   animation-delay: 1.0s;
-  /* PERFORMANCE: Skip rendering when off-screen */
+  /* PERFORMANCE */
   content-visibility: auto; 
   contain-intrinsic-size: 500px;
 }
@@ -537,7 +538,7 @@ header p {
   box-shadow: 0 10px 20px rgba(0,0,0,0.5), 0 0 50px -10px rgba(160, 40, 60, 0.15); 
 }
 
-.honorable .album-inner img { margin-bottom: 8px; }
+.honorable .album-inner .album-art { margin-bottom: 8px; }
 .honorable .album .artist { margin-bottom: 6px; font-size: 0.75rem; }
 
 /* FIX FOR HONORABLE TITLES */
@@ -968,7 +969,7 @@ const createAlbumCard = (album, isHonorable = false) => {
   article.innerHTML = `
     <div class="album-inner">
       <div class="glare"></div> 
-      <img src="${album.cover}" alt="${album.title}" width="300" height="300" loading="${loadingType}" decoding="async" draggable="false">
+      <div class="album-art" style="background-image: url('${album.cover}');"></div>
       <h2>${displayTitle}</h2>
       <div class="artist">${album.artist}</div>
       <div class="review">${album.shortReview}</div>
@@ -1055,8 +1056,13 @@ const openModal = (album) => {
   artistEl.textContent = album.dataset.artist;
   textEl.textContent = album.dataset.review;
   
-  const cardImg = album.querySelector('img');
-  rwImg.src = cardImg ? cardImg.src : "";
+  // Extract background image URL for modal
+  const cardArtDiv = album.querySelector('.album-art');
+  const bgImageStyle = cardArtDiv.style.backgroundImage;
+  // Strip url("...") wrapper
+  const bgUrl = bgImageStyle.slice(5, -2); 
+  
+  rwImg.src = bgUrl || "";
   
   spotifyBtn.href = album.dataset.spotify || '#';
   appleBtn.href = album.dataset.apple || '#';
@@ -1173,7 +1179,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.row, .honorable .album').forEach(el => observer.observe(el));
 
-// --- OPTIMIZED 3D TILT ENGINE ---
+// --- 3D TILT ENGINE ---
 const isDesktop = window.matchMedia("(min-width: 769px) and (hover: hover)").matches;
 
 if (isDesktop) {
@@ -1218,7 +1224,8 @@ if (isDesktop) {
         let bounds;
         const inner = card.querySelector('.album-inner');
         const glare = card.querySelector('.glare');
-        const img = card.querySelector('img');
+        // UPDATED SELECTION
+        const art = card.querySelector('.album-art');
         const textElements = card.querySelectorAll('h2, .artist, .review');
         let cardTicking = false;
         let cardMouseX = 0;
@@ -1248,7 +1255,7 @@ if (isDesktop) {
             }
 
             // Parallax
-            if(img) img.style.transform = `translateZ(30px) scale(1.02)`;
+            if(art) art.style.transform = `translateZ(30px) scale(1.02)`;
             textElements.forEach(el => el.style.transform = `translateZ(20px)`);
 
             cardTicking = false;
@@ -1273,7 +1280,7 @@ if (isDesktop) {
             // Reset styles immediately
             inner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             inner.style.willChange = 'auto';
-            if(img) img.style.transform = 'translateZ(0) scale(1)';
+            if(art) art.style.transform = 'translateZ(0) scale(1)';
             textElements.forEach(el => el.style.transform = 'translateZ(0)');
             bounds = null; 
             cardTicking = false;
