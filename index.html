@@ -30,7 +30,6 @@
   --card-width: 260px;
 }
 
-/* RESET */
 * { 
   margin: 0; 
   padding: 0; 
@@ -54,14 +53,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* LOCK BODY SCROLL WHEN MODAL OPEN */
 body.window-open {
   overflow: hidden;
   touch-action: none;
   padding-right: 10px;
 }
 
-/* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #0b0d10; }
 ::-webkit-scrollbar-thumb { 
@@ -71,7 +68,6 @@ body.window-open {
 }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
 
-/* BACKGROUND */
 .bg {
   position: fixed;
   inset: -60%;
@@ -102,7 +98,6 @@ body.window-open {
 @keyframes flowA { to { transform: rotate(360deg); } }
 @keyframes flowB { to { transform: rotate(-360deg); } }
 
-/* NOISE TEXTURE */
 .noise {
   position: fixed;
   inset: 0;
@@ -113,7 +108,6 @@ body.window-open {
   background-size: 120px;
 }
 
-/* CURSOR SPOTLIGHT */
 .cursor-glow {
   position: fixed;
   width: 600px;
@@ -129,14 +123,12 @@ body.window-open {
   will-change: transform;
 }
 
-/* WRAP */
 .wrap {
   max-width: 1100px;
   margin: 0 auto;
   padding: 100px 20px 120px;
 }
 
-/* --- HEADER --- */
 header {
   text-align: center;
   margin-bottom: 75px; 
@@ -165,7 +157,6 @@ header p {
   margin-top: 0;
 }
 
-/* --- FOOTER BUTTONS --- */
 .footer-row {
   display: flex;
   justify-content: center;
@@ -216,7 +207,6 @@ header p {
 .footer-btn:hover svg { opacity: 1; }
 .footer-btn:active { transform: translateY(-1px); opacity: 0.8; }
 
-/* PYRAMID & ROWS */
 .pyramid {
   display: flex;
   flex-direction: column;
@@ -238,7 +228,6 @@ header p {
   transform: translateY(0);
 }
 
-/* ALBUM CARD */
 .album {
   width: var(--card-width);
   flex: 0 0 var(--card-width);
@@ -277,7 +266,6 @@ header p {
   will-change: transform;
 }
 
-/* PARALLAX ELEMENTS */
 .album-inner .album-art,
 .album-inner h2,
 .album-inner .artist,
@@ -285,8 +273,6 @@ header p {
   transform: translateZ(0);
   transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
-/* GLARE EFFECT */
 .glare {
   position: absolute;
   top: 0;
@@ -331,8 +317,6 @@ header p {
   box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
   background-color: #222;
 }
-
-/* MAIN ALBUM TITLES */
 .album h2 { 
   font-size: 0.92rem;        
   font-weight: 600;          
@@ -351,7 +335,6 @@ header p {
 .album .artist { font-size: .8rem; color: #b5b5b5; font-style: italic; margin-bottom: 12px; }
 .album .review { font-size: .88rem; color: #d0d0d0; margin-top: 0; }
 
-/* RIPPLE EFFECT */
 .ripple {
   position: absolute;
   border-radius: 50%;
@@ -365,7 +348,6 @@ header p {
   to { transform: scale(4); opacity: 0; }
 }
 
-/* --- WINDOW & OVERLAY --- */
 .review-overlay {
   position: fixed;
   inset: 0;
@@ -411,7 +393,6 @@ header p {
   transition: transform 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.15), opacity 0.5s ease;
 }
 
-/* STAGGERED MODAL ANIMATION */
 .rw-content > * {
   opacity: 0;
   transform: translateY(15px);
@@ -436,7 +417,6 @@ header p {
   align-items: start;
 }
 
-/* MODES */
 .review-window.is-centered .rw-grid {
   display: block; 
   max-width: 680px; 
@@ -463,11 +443,9 @@ header p {
   color: rgba(234,234,234,0.85);
 }
 
-/* UPDATED FORM STYLES */
 .review-window h3 { font-size: 1.6rem; color: var(--text); line-height: 1.1; margin-bottom: 6px; }
 .review-window .rw-artist { color: var(--muted); margin-bottom: 24px; font-size: 1.1rem; font-style: italic;}
 
-/* REVIEW TEXT STYLING - REMOVED BIG LETTER */
 .review-window .rw-text {
   font-family: var(--serif); 
   font-size: 1.15rem; 
@@ -510,7 +488,6 @@ header p {
 .btn:active { transform: translateY(0); }
 .btn:focus-visible { outline: 2px solid white; outline-offset: 2px; }
 
-/* CLOSE BUTTON */
 .close-btn {
   position: absolute; top: 28px; right: 28px; width: 36px; height: 36px; 
   background: transparent; border: none;
@@ -523,7 +500,6 @@ header p {
 .close-btn:active { transform: rotate(90deg) scale(0.95); }
 .close-btn:focus-visible { outline: 2px solid white; opacity: 1; }
 
-/* HONORABLE MENTIONS */
 .honorable { 
   margin-top: 96px; text-align: center;
   opacity: 0;
@@ -544,7 +520,6 @@ header p {
 }
 .honorable .album.visible { opacity: 1; transform: translateY(0); }
 
-/* VIBRANT HONORABLE MENTIONS */
 .honorable .album-inner { 
   height: fit-content; min-height: 0; padding: 10px 12px; 
   opacity: .9; 
@@ -586,7 +561,6 @@ header p {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* MOBILE */
 @media (max-width: 768px) {
   .wrap { padding: 40px 20px 80px; }
   .pyramid { gap: 24px; }
@@ -945,14 +919,12 @@ const honorableMentions = [
   }
 ];
 
-// --- NOTE CONTENT ---
 const noteData = `
   2025 was a really fast year, but still a fun one. I experienced things like never before, and I know I’ll never experience them the same way again. I’ll hold this year close to me. So many changes came in me. I have so many sides, and I think this year helped me put myself into words. I used too many words, and I still think they weren’t the correct ones.<br><br>
   
   But I’ll hold on to so many things from this year. I know I’m pretty weird, and I think that’s my word. <span style="color: #fff; font-style: italic; text-shadow: 0 0 10px rgba(255,255,255,0.5);">I wish I could turn this year into a necklace and put it around her neck.</span> I’ll miss this year so much—my experiences, and the people. I’ll miss them.
 `;
 
-// --- 2. RENDER FUNCTIONS ---
 
 const createAlbumCard = (album, isHonorable = false) => {
   const article = document.createElement('article');
@@ -960,7 +932,6 @@ const createAlbumCard = (album, isHonorable = false) => {
   article.tabIndex = 0;
   article.setAttribute('role', 'button');
   
-  // Attach Data for Modal
   article.dataset.title = album.title;
   article.dataset.artist = album.artist;
   article.dataset.review = album.review;
@@ -969,7 +940,6 @@ const createAlbumCard = (album, isHonorable = false) => {
   article.dataset.spotify = album.spotify || "#";
   article.dataset.apple = album.apple || "#";
 
-  // Hybrid Lazy Loading
   const loadingType = (album.rank && album.rank <= 3) ? 'eager' : 'lazy';
 
   const displayTitle = isHonorable ? album.title : `${album.rank}. ${album.title}`;
@@ -988,11 +958,11 @@ const createAlbumCard = (album, isHonorable = false) => {
 
 const renderPyramid = () => {
   const container = document.getElementById('pyramid-container');
-  // Define layout pattern: 1 card, then 2, then 3, then 4
+  
   const rowPattern = [1, 2, 3, 4];
   let albumIndex = 0;
 
-  // Stagger Delay Variable
+  
   let delayCounter = 0;
 
   rowPattern.forEach(count => {
@@ -1001,7 +971,7 @@ const renderPyramid = () => {
     const row = document.createElement('div');
     row.className = 'row';
     
-    // Add staggered delay to each row
+   
     row.style.transitionDelay = `${delayCounter * 0.15}s`;
     delayCounter++;
 
@@ -1024,11 +994,11 @@ const renderHonorable = () => {
   });
 };
 
-// --- 3. EXECUTE RENDER ---
+
 renderPyramid();
 renderHonorable();
 
-// --- TRIGGER INTRO ANIMATION ---
+
 window.addEventListener('DOMContentLoaded', () => {
   const rows = document.querySelectorAll('.row');
   setTimeout(() => {
@@ -1038,7 +1008,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }, 100);
 });
 
-// --- 4. INTERACTION LOGIC ---
+
 const overlay = document.getElementById('overlay');
 const closeBtn = document.getElementById('close-btn');
 const windowEl = document.getElementById('review-window');
@@ -1055,16 +1025,16 @@ let lastFocusedElement;
 const openModal = (album) => {
   lastFocusedElement = album;
 
-  // Standard Album Mode
+  
   windowEl.classList.remove('is-centered');
   
   titleEl.textContent = album.dataset.title;
   artistEl.textContent = album.dataset.artist;
   
-  // Use innerHTML to allow formatting in reviews
+
   textEl.innerHTML = album.dataset.review;
   
-  // Extract background image URL for modal
+ 
   const cardArtDiv = album.querySelector('.album-art');
   const bgImageStyle = cardArtDiv.style.backgroundImage;
   const bgUrl = bgImageStyle.slice(5, -2); 
@@ -1077,7 +1047,7 @@ const openModal = (album) => {
   mReleased.textContent = album.dataset.released || "—";
   mRuntime.textContent = album.dataset.runtime || "—";
   
-  // RESET SCROLL
+
   windowEl.scrollTop = 0;
 
   overlay.classList.add('active');
@@ -1089,14 +1059,14 @@ const openModal = (album) => {
 const openNote = (e) => {
   lastFocusedElement = e.currentTarget;
 
-  // Note Mode
+
   windowEl.classList.add('is-centered');
   
   titleEl.textContent = "A Note";
   artistEl.textContent = "by Manik Singh Mehra";
   textEl.innerHTML = noteData; 
   
-  // RESET SCROLL
+
   windowEl.scrollTop = 0;
 
   overlay.classList.add('active');
@@ -1115,7 +1085,7 @@ const closePanel = () => {
   if (lastFocusedElement) lastFocusedElement.focus();
 };
 
-// --- KEYBOARD TRAP FOR ACCESSIBILITY ---
+
 const trapFocus = (e) => {
   if (!overlay.classList.contains('active')) return;
 
@@ -1126,12 +1096,12 @@ const trapFocus = (e) => {
   const lastElement = focusableElements[focusableElements.length - 1];
 
   if (e.key === 'Tab') {
-    if (e.shiftKey) { // Shift + Tab
+    if (e.shiftKey) { 
       if (document.activeElement === firstElement) {
         e.preventDefault();
         lastElement.focus();
       }
-    } else { // Tab
+    } else { 
       if (document.activeElement === lastElement) {
         e.preventDefault();
         firstElement.focus();
@@ -1140,13 +1110,13 @@ const trapFocus = (e) => {
   }
 };
 
-// Event Delegation
+
 document.addEventListener('click', (e) => {
   const album = e.target.closest('.album');
   if (album) openModal(album);
 });
 
-// Footer Clicks
+
 document.getElementById('note-trigger').addEventListener('click', openNote);
 document.getElementById('note-trigger').addEventListener('keydown', (e) => {
    if (e.key === 'Enter' || e.key === ' ') {
@@ -1173,7 +1143,7 @@ overlay.addEventListener('click', e => {
   if(e.target === overlay) closePanel();
 });
 
-// Scroll Reveal Observer
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1185,7 +1155,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.row, .honorable .album').forEach(el => observer.observe(el));
 
-// --- 3D TILT ENGINE ---
+
 const isDesktop = window.matchMedia("(min-width: 769px) and (hover: hover)").matches;
 
 if (isDesktop) {
@@ -1194,7 +1164,7 @@ if (isDesktop) {
     let currentX = 0, currentY = 0;
     let isCursorTicking = false;
 
-    // --- 1. Global Mouse Tracker (Lightweight) ---
+    
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -1205,7 +1175,7 @@ if (isDesktop) {
         }
     });
 
-    // --- 2. Cursor Animation Loop ---
+    
     const animateCursor = () => {
         currentX += (mouseX - currentX) * 0.15; 
         currentY += (mouseY - currentY) * 0.15;
@@ -1221,7 +1191,7 @@ if (isDesktop) {
         }
     };
 
-    // --- 3. Card Tilt Logic (Optimized) ---
+   
     const cards = document.querySelectorAll('.album');
     
     cards.forEach(card => {
@@ -1243,21 +1213,21 @@ if (isDesktop) {
             const x = cardMouseX - bounds.left;
             const y = cardMouseY - bounds.top;
             
-            // Calculate rotation
+         
             const xRotation = -((y - bounds.height / 2) / 10); 
             const yRotation = ((x - bounds.width / 2) / 10);
             
-            // Apply Transforms
+          
             inner.style.transform = `perspective(1000px) rotateX(${xRotation}deg) rotateY(${yRotation}deg) translateY(-5px)`;
             
-            // Glare
+        
             if(glare) {
                 const glareX = (x / bounds.width) * 100;
                 const glareY = (y / bounds.height) * 100;
                 glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.25), transparent 50%)`;
             }
 
-            // Parallax
+            
             if(art) art.style.transform = `translateZ(30px) scale(1.02)`;
             textElements.forEach(el => el.style.transform = `translateZ(20px)`);
 
@@ -1280,7 +1250,7 @@ if (isDesktop) {
         });
 
         card.addEventListener('mouseleave', () => {
-            // Reset styles immediately
+          
             inner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             inner.style.willChange = 'auto';
             if(art) art.style.transform = 'translateZ(0) scale(1)';
@@ -1291,12 +1261,12 @@ if (isDesktop) {
     });
 
 } else {
-    // Disable heavy effects on mobile
+    
     const cursor = document.getElementById('cursor-glow');
     if(cursor) cursor.style.display = 'none';
 }
 
-// Ripple Effect
+
 document.addEventListener('click', function(e) {
   const card = e.target.closest('.album');
   if (card) {
@@ -1320,4 +1290,5 @@ document.addEventListener('click', function(e) {
 </body>
 
 </html>
+
 
